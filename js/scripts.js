@@ -6,7 +6,6 @@ function breakNumbers (littleNum) {
 function numbers(change) {
   var newNum = change.toString();
    if (newNum[0] === '1') {
-     console.log(newNum);
     var numeral = newNum.replace('1','I');
   } else if (newNum === "2") {
     var numeral = newNum.replace('2','II');
@@ -24,7 +23,10 @@ function numbers(change) {
     var numeral = newNum.replace('8','VIII');
   } else if (newNum === "9") {
     var numeral = newNum.replace('9','IX');
-  } else {}
+  } else if (newNum === 0) {
+    var numeral = newNum.splice(0);
+
+ }
 
   return numeral
 
@@ -34,7 +36,6 @@ function twoNumbers(change) {
   var newNum = change.toString();
    if (newNum[0] === '1') {
     var numeral = newNum[0].replace('1','X');
-
   } else if (newNum[0] === "2") {
     var numeral = newNum[0].replace('2','XX');
   } else if (newNum[0] === "3") {
@@ -51,7 +52,9 @@ function twoNumbers(change) {
     var numeral = newNum[0].replace('8','LXXX');
   } else if (newNum[0] === "9") {
     var numeral = newNum[0].replace('9','XC');
-  } else {}
+  } else if (newNum === 0) {
+    return;
+  }
   return numeral
 
 };
@@ -77,6 +80,7 @@ function threeNumbers(change) {
   } else if (newNum[0] === "9") {
     var numeral = newNum[0].replace('9','CM');
   } else {}
+
   return numeral
 
 };
@@ -103,7 +107,6 @@ $(document).ready(function() {
     var finalArray = []
     for (x=0; x < output.length; x++) {
       if (output.length === 4) {
-        debugger;
         var splitNum = breakNumbers(output);
         var romanNumber4 =fourNumbers(splitNum);
         var splicedNum = splitNum.splice(1);
