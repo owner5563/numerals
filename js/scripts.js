@@ -81,8 +81,20 @@ function threeNumbers(change) {
 
 };
 
+function fourNumbers(change) {
+  var newNum = change.toString();
+    if (newNum[0] === '1') {
+    var numeral = newNum[0].replace('1','M');
+  } else if (newNum[0] === "2") {
+    var numeral = newNum[0].replace('2','MM');
+  } else if (newNum[0] === "3") {
+    var numeral = newNum[0].replace('3','MMM');
+  } else if (newNum[0] > 3) {
+    alert('not a number')
+  }
+  return numeral
 
-
+};
 
 $(document).ready(function() {
   $("form#numChange").submit(function(event) {
@@ -91,21 +103,29 @@ $(document).ready(function() {
     var finalArray = []
     for (x=0; x < output.length; x++) {
       if (output.length === 4) {
-        var romanNumber4 = fourNumbers(output);
+        debugger;
+        var splitNum = breakNumbers(output);
+        var romanNumber4 =fourNumbers(splitNum);
+        var splicedNum = splitNum.splice(1);
+        var romanNumber3 = threeNumbers(splicedNum);
+        var splicedNum1 = splicedNum.splice(1)
+        var romanNumber2 = twoNumbers(splicedNum1);
+        var splicedNum2 = splicedNum1.splice(1)
+        var romanNumber = numbers(splicedNum2)
+        var finalArray = romanNumber4 + romanNumber3 + romanNumber2 + romanNumber
       } else if (output.length === 3) {
+        debugger;
         var splitNum = breakNumbers(output);
         var romanNumber3 = threeNumbers(splitNum);
         var splicedNum = splitNum.splice(1)
-        console.log(splicedNum);
         var romanNumber2 = twoNumbers(splicedNum);
-        var splicedNum = splitNum.splice(0,2);
-        console.log(splicedNum);
-        var romanNumber = numbers(splicedNum)
+        var splicedNum1 = splicedNum.splice(1)
+        var romanNumber = numbers(splicedNum1)
         var finalArray = romanNumber3 + romanNumber2 + romanNumber
       } else if (output.length === 2) {
         var splitNum = breakNumbers(output);
         var romanNumber2 = twoNumbers(splitNum);
-        var splicedNum = splitNum.slice(1)
+        var splicedNum = splitNum.splice(1)
         var romanNumber = numbers(splicedNum)
         var finalArray = romanNumber2 + romanNumber
       } else if (output.length === 1) {
@@ -114,12 +134,6 @@ $(document).ready(function() {
         var finalArray = romanNumber
       }
     }
-
-    console.log(romanNumber);
-    //
-    // var newNumber = [];
       $('#result').text(finalArray);
-
-
   });
 });
